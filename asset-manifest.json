@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/cc-optimizer/static/css/main.4ce2737e.css",
+    "main.js": "/cc-optimizer/static/js/main.a232b414.js",
+    "index.html": "/cc-optimizer/index.html",
+    "main.4ce2737e.css.map": "/cc-optimizer/static/css/main.4ce2737e.css.map",
+    "main.a232b414.js.map": "/cc-optimizer/static/js/main.a232b414.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4ce2737e.css",
+    "static/js/main.a232b414.js"
+  ]
+}
