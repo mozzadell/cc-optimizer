@@ -361,7 +361,7 @@ function App() {
                 </button>
                 {results.multi_card_strategies && results.multi_card_strategies.length > 0 && (
                   <button 
-                    className={`toggle-btn ${showMultiCard && !showCustomPortfolio ? 'active' : ''}`}
+                    className={`toggle-btn ${showMultiCard ? 'active' : ''}`}
                     onClick={() => {
                       setShowMultiCard(true);
                       setShowCustomPortfolio(false);
@@ -381,69 +381,63 @@ function App() {
                 </button>
               </div>
 
-
               {showCustomPortfolio ? (
-                /* Custom Portfolio Section */
                 <div className="custom-portfolio-section">
                   <h2>🎯 Build Your Custom Portfolio</h2>
                   <p className="section-subtitle">Select cards to create your own custom combination</p>
                   
-                  {(() => {
+                  {selectedCards.length > 0 && (() => {
                     const portfolio = calculateCustomPortfolio();
-                    return (
-                      <>
-                        {portfolio && portfolio.cards.length > 0 && (
-                          <div className="portfolio-summary">
-                            <div className="summary-stats">
-                              <div className="stat">
-                                <span className="stat-label">Total Annual Rewards</span>
-                                <span className="stat-value positive">{formatCurrency(portfolio.totalRewards)}</span>
-                              </div>
-                              <div className="stat">
-                                <span className="stat-label">Total Annual Fees</span>
-                                <span className="stat-value negative">{formatCurrency(portfolio.totalFees)}</span>
-                              </div>
-                              <div className="stat">
-                                <span className="stat-label">Total Credits</span>
-                                <span className="stat-value positive">{formatCurrency(portfolio.totalCredits)}</span>
-                              </div>
-                              <div className="stat">
-                                <span className="stat-label">Net Annual Value</span>
-                                <span className="stat-value highlight">{formatCurrency(portfolio.netValue)}</span>
-                              </div>
-                            </div>
+                    return portfolio && (
+                      <div className="portfolio-summary">
+                        <div className="summary-stats">
+                          <div className="stat">
+                            <span className="stat-label">Total Annual Rewards</span>
+                            <span className="stat-value positive">{formatCurrency(portfolio.totalRewards)}</span>
                           </div>
-                        )}
-                        
-                        <div className="custom-portfolio-cards">
-                          {results.recommendations.map((card) => (
-                            <div 
-                              key={card.card_id} 
-                              className={`portfolio-card-item ${selectedCards.includes(card.card_id) ? 'selected' : ''}`}
-                              onClick={() => toggleCardSelection(card.card_id)}
-                            >
-                              <div className="portfolio-card-checkbox">
-                                <input 
-                                  type="checkbox" 
-                                  checked={selectedCards.includes(card.card_id)}
-                                  readOnly
-                                />
-                              </div>
-                              <div className="portfolio-card-info">
-                                <h4>{card.card_name}</h4>
-                                <div className="portfolio-card-stats">
-                                  <span className="portfolio-stat">{formatCurrency(card.annual_rewards)} rewards</span>
-                                  <span className="portfolio-stat negative">{formatCurrency(card.annual_fee)} fee</span>
-                                  <span className="portfolio-stat positive">{formatCurrency(card.credits)} credits</span>
-                                  <span className="portfolio-stat highlight">{formatCurrency(card.net_rewards)} net</span>
-                                </div>
-                              </div>
-                            </div>
-                          ))}
+                          <div className="stat">
+                            <span className="stat-label">Total Annual Fees</span>
+                            <span className="stat-value negative">{formatCurrency(portfolio.totalFees)}</span>
+                          </div>
+                          <div className="stat">
+                            <span className="stat-label">Total Credits</span>
+                            <span className="stat-value positive">{formatCurrency(portfolio.totalCredits)}</span>
+                          </div>
+                          <div className="stat">
+                            <span className="stat-label">Net Annual Value</span>
+                            <span className="stat-value highlight">{formatCurrency(portfolio.netValue)}</span>
+                          </div>
                         </div>
-                      </>
+                      </div>
                     );
                   })()}
+                  
+                  <div className="custom-portfolio-cards">
+                    {results.recommendations.map((card) => (
+                      <div 
+                        key={card.card_id} 
+                        className={`portfolio-card-item ${selectedCards.includes(card.card_id) ? 'selected' : ''}`}
+                        onClick={() => toggleCardSelection(card.card_id)}
+                      >
+                        <div className="portfolio-card-checkbox">
+                          <input 
+                            type="checkbox" 
+                            checked={selectedCards.includes(card.card_id)}
+                            onChange={() => {}}
+                          />
+                        </div>
+                        <div className="portfolio-card-info">
+                          <h4>{card.card_name}</h4>
+                          <div className="portfolio-card-stats">
+                            <span className="portfolio-stat">{formatCurrency(card.annual_rewards)} rewards</span>
+                            <span className="portfolio-stat negative">{formatCurrency(card.annual_fee)} fee</span>
+                            <span className="portfolio-stat positive">{formatCurrency(card.credits)} credits</span>
+                            <span className="portfolio-stat highlight">{formatCurrency(card.net_rewards)} net</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ) : !showMultiCard ? (
                 <>
