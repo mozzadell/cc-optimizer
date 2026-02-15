@@ -350,9 +350,7 @@ function App() {
               </div>
 
               {/* Results View Toggle */}
-              {console.log("ABOUT TO RENDER TOGGLE")}
               <div className="strategy-toggle">
-                {console.log("TOGGLE DIV RENDERING")}
                 <button 
                   className={`toggle-btn ${!showMultiCard && !showCustomPortfolio ? 'active' : ''}`}
                   onClick={() => {
