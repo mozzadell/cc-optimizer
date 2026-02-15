@@ -333,6 +333,7 @@ function App() {
           {/* Results */}
           {results && (
             <div className="results-section">
+              {console.log("RESULTS SECTION RENDERING", results)}
               {/* Summary */}
               <div className="summary-card">
                 <h3>Your Spending Summary</h3>
@@ -349,7 +350,9 @@ function App() {
               </div>
 
               {/* Results View Toggle */}
+              {console.log("ABOUT TO RENDER TOGGLE")}
               <div className="strategy-toggle">
+                {console.log("TOGGLE DIV RENDERING")}
                 <button 
                   className={`toggle-btn ${!showMultiCard && !showCustomPortfolio ? 'active' : ''}`}
                   onClick={() => {
