@@ -348,18 +348,18 @@ function App() {
                 </div>
               </div>
 
-              {/* Multi-Card Strategy Toggle */}
-              {results.multi_card_strategies && results.multi_card_strategies.length > 0 && (
-                <div className="strategy-toggle">
-                  <button 
-                    className={`toggle-btn ${!showMultiCard && !showCustomPortfolio ? 'active' : ''}`}
-                    onClick={() => {
-                      setShowMultiCard(false);
-                      setShowCustomPortfolio(false);
-                    }}
-                  >
-                    Individual Cards
-                  </button>
+              {/* Results View Toggle */}
+              <div className="strategy-toggle">
+                <button 
+                  className={`toggle-btn ${!showMultiCard && !showCustomPortfolio ? 'active' : ''}`}
+                  onClick={() => {
+                    setShowMultiCard(false);
+                    setShowCustomPortfolio(false);
+                  }}
+                >
+                  Individual Cards
+                </button>
+                {results.multi_card_strategies && results.multi_card_strategies.length > 0 && (
                   <button 
                     className={`toggle-btn ${showMultiCard && !showCustomPortfolio ? 'active' : ''}`}
                     onClick={() => {
@@ -369,17 +369,18 @@ function App() {
                   >
                     Multi-Card Strategies
                   </button>
-                  <button 
-                    className={`toggle-btn ${showCustomPortfolio ? 'active' : ''}`}
-                    onClick={() => {
-                      setShowMultiCard(false);
-                      setShowCustomPortfolio(true);
-                    }}
-                  >
-                    Custom Portfolio
-                  </button>
-                </div>
-              )}
+                )}
+                <button 
+                  className={`toggle-btn ${showCustomPortfolio ? 'active' : ''}`}
+                  onClick={() => {
+                    setShowMultiCard(false);
+                    setShowCustomPortfolio(true);
+                  }}
+                >
+                  Custom Portfolio
+                </button>
+              </div>
+
 
               {showCustomPortfolio ? (
                 /* Custom Portfolio Section */
